@@ -24,7 +24,7 @@ What is mean total number of steps taken per day?
 
     ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 
-![](figure/unnamed-chunk-2-1.png)
+![](figure/unnamed-chunk-1-1.png)
 
 #### 3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -45,7 +45,7 @@ What is the average daily activity pattern?
     averageStepsPerInterval <- aggregate(x = list(steps = activity$steps), by = list(interval = activity$interval), FUN = mean, na.rm = TRUE)
     ggplot(data = averageStepsPerInterval, aes(x = averageStepsPerInterval$interval, y = averageStepsPerInterval$steps)) + geom_line() + xlab("5-minute interval") + ylab("Average steps taken")
 
-![](figure/unnamed-chunk-4-1.png)
+![](figure/unnamed-chunk-2-1.png)
 
 #### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -83,7 +83,7 @@ Imputing missing values
 
     ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 
-![](figure/unnamed-chunk-8-1.png)
+![](figure/unnamed-chunk-6-1.png)
 
 #### ...Calculate and report the mean and median total number of steps taken per day.
 
@@ -117,4 +117,4 @@ Are there differences in activity patterns between weekdays and weekends?
     averageStepsPerWeekday <- aggregate(steps ~ interval + day, data = filledData, mean)
     ggplot(averageStepsPerWeekday, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5 minute interval") + ylab("Number of steps")
 
-![](figure/unnamed-chunk-11-1.png)
+![](figure/unnamed-chunk-8-1.png)
