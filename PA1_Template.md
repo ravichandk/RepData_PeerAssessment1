@@ -22,7 +22,7 @@ What is mean total number of steps taken per day?
 
     ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 
-![](PA1_Template_files/figure/unnamed-chunk-1-1.png)
+![](figure/unnamed-chunk-1-1.png)
 
     #Calculate and report the mean and median of the total number of steps taken per day
     mean(totalStepPerDay)
@@ -44,7 +44,7 @@ Make a time series plot (i.e. type = "l") of the 5-minute interval
     averageStepsPerInterval <- aggregate(x = list(steps = activity$steps), by = list(interval = activity$interval), FUN = mean, na.rm = TRUE)
     ggplot(data = averageStepsPerInterval, aes(x = averageStepsPerInterval$interval, y = averageStepsPerInterval$steps)) + geom_line() + xlab("5-minute interval") + ylab("Average steps taken")
 
-![](PA1_Template_files/figure/unnamed-chunk-2-1.png)
+![](figure/unnamed-chunk-2-1.png)
 
 Which 5-minute interval, on average across all the days in the dataset,
 contains the maximum number of steps?
@@ -87,7 +87,7 @@ day.
 
     ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 
-![](PA1_Template_files/figure/unnamed-chunk-6-1.png)
+![](figure/unnamed-chunk-6-1.png)
 
     mean(totalStepPerDayAfterFillingData)
 
@@ -123,4 +123,4 @@ averaged across all weekday days or weekend days (y-axis).
     averageStepsPerWeekday <- aggregate(steps ~ interval + day, data = filledData, mean)
     ggplot(averageStepsPerWeekday, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5 minute interval") + ylab("Number of steps")
 
-![](PA1_Template_files/figure/unnamed-chunk-8-1.png)
+![](figure/unnamed-chunk-8-1.png)
