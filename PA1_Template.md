@@ -39,7 +39,7 @@ What is mean total number of steps taken per day?
 What is the average daily activity pattern?
 -------------------------------------------
 
-#### 1.Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+#### 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
     library(ggplot2)
     averageStepsPerInterval <- aggregate(x = list(steps = activity$steps), by = list(interval = activity$interval), FUN = mean, na.rm = TRUE)
@@ -47,7 +47,7 @@ What is the average daily activity pattern?
 
 ![](figure/unnamed-chunk-4-1.png)
 
-#### 2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+#### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
     averageStepsPerInterval[which.max(averageStepsPerInterval$steps),]
 
@@ -57,7 +57,7 @@ What is the average daily activity pattern?
 Imputing missing values
 -----------------------
 
-#### 1.Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+#### 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
     missingValues <- is.na(activity$steps)
     table(missingValues)
@@ -66,7 +66,7 @@ Imputing missing values
     ## FALSE  TRUE 
     ## 15264  2304
 
-#### 2.Create a new dataset that is equal to the original dataset but with the missing data filled in.
+#### 2. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
     filledData <- activity
 
@@ -76,7 +76,7 @@ Imputing missing values
         }
     }
 
-#### 3.Make a histogram of the total number of steps taken each day...
+#### 3. Make a histogram of the total number of steps taken each day...
 
     totalStepPerDayAfterFillingData <- tapply(filledData$steps, filledData$date, sum, na.rm = TRUE)
     qplot(totalStepPerDayAfterFillingData, xlab = "Total steps per day")
@@ -98,7 +98,7 @@ Imputing missing values
 Are there differences in activity patterns between weekdays and weekends?
 -------------------------------------------------------------------------
 
-#### 1.Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+#### 1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
     weekday <- function(date) {
         day <- weekdays(date)
@@ -112,7 +112,7 @@ Are there differences in activity patterns between weekdays and weekends?
     }
     filledData$day <- sapply(as.Date(filledData$date), FUN = weekday)
 
-#### 2.Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+#### 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
     averageStepsPerWeekday <- aggregate(steps ~ interval + day, data = filledData, mean)
     ggplot(averageStepsPerWeekday, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5 minute interval") + ylab("Number of steps")
